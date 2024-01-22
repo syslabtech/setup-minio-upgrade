@@ -6,7 +6,7 @@ metadata:
     name: minio-operator
     app.kubernetes.io/instance: minio-operator
     app.kubernetes.io/name: operator
-  namespace: minio-operator
+  namespace: ns-minio
 spec:
   type: ClusterIP
   ports:
@@ -22,7 +22,7 @@ metadata:
   name: sts # Please do not change this value
   labels:
     name: minio-operator
-  namespace: minio-operator
+  namespace: ns-minio
 spec:
   type: ClusterIP
   ports:
@@ -30,4 +30,4 @@ spec:
       targetPort: 4223
       name: https
   selector:
-    name: minio-operator
+    name: ns-minio

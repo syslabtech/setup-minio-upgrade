@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: minio-operator
-  namespace: minio-operator
+  namespace: ns-minio
   labels:
     app.kubernetes.io/instance: minio-operator
     app.kubernetes.io/name: operator
