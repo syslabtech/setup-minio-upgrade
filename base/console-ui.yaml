@@ -261,8 +261,6 @@ spec:
   ports:
     - name: http
       port: 9090
-    - name: https
-      port: 9443
   selector:
     app: console
 ---
@@ -289,7 +287,6 @@ spec:
       containers:
         - args:
             - ui
-            - --certs-dir=/tmp/certs
           image: minio/operator:v5.0.11
           imagePullPolicy: IfNotPresent
           name: console
@@ -300,33 +297,4 @@ spec:
           ports:
             - containerPort: 9090
               name: http
-            - containerPort: 9443
-              name: https
-          volumeMounts:
-            - mountPath: /tmp/certs
-              name: tls-certificates
-            - mountPath: /tmp/certs/CAs
-              name: tmp
-      volumes:
-        - name: tls-certificates
-          projected:
-            sources:
-              - secret:
-                  items:
-                    - key: public.crt
-                      path: public.crt
-                    - key: public.crt
-                      path: CAs/public.crt
-                    - key: private.key
-                      path: private.key
-                    - key: tls.crt
-                      path: tls.crt
-                    - key: tls.crt
-                      path: CAs/tls.crt
-                    - key: tls.key
-                      path: tls.key
-                  name: console-tls
-                  optional: true
-        - name: tmp
-          emptyDir: {}
       serviceAccountName: console-sa
