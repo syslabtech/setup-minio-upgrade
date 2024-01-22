@@ -1,1 +1,2 @@
 
+quay.io/minio/minio:RELEASE.2023-11-15T20-43-25Z
